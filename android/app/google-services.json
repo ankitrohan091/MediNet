@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "445891848571",
+    "project_id": "medinet-app-e522f",
+    "storage_bucket": "medinet-app-e522f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445891848571:android:7779161cbba86b327b75de",
+        "android_client_info": {
+          "package_name": "com.example.medinet_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445891848571-trgavm24cdvh1otka9h2pib50p74d14r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medinet_app",
+            "certificate_hash": "89e687ba9bf5ed48869cfdc6ebf5eaa532557555"
+          }
+        },
+        {
+          "client_id": "445891848571-8sp0mqftbdm0hbgkm01q31ffqg4426bk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4hg9c9nOJyosUh1uzlCdAz4x3MfDT1DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445891848571-8sp0mqftbdm0hbgkm01q31ffqg4426bk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
