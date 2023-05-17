@@ -21,19 +21,16 @@ class _HelpState extends State<Help> {
         children: [
           Container(
             color: Colors.purple[600],
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: ListTile(
-                title: const Center(child: Text(
-                    "How can we help you?",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.amberAccent)),),
-                trailing: GestureDetector(onTap: (){
-                },
-                    child: Container(height:45,width:50,color:Colors.amber,child: const Icon(Icons.add_alert_sharp))),
-              ),
+            child: ListTile(
+              title: const Center(child: Text(
+                  "How can we help you?",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.amberAccent)),),
+              trailing: GestureDetector(onTap: (){
+              },
+                  child: Container(height:45,width:50,color:Colors.amber,child: const Icon(Icons.add_alert_sharp))),
             ),
           ),
-          const Divider(thickness: 2,),
+          // const Divider(thickness: 2,),
           helpTopic(context, "How to Start with MediNet","⦿ How to start with MediNet",
               "Welcome to the MediNet community. Hope you are doing well.There is lot to do on this platform, activities you can do are :-\n\n• "
                   "Ask your questions regarding disorders. \n\n• Help others to get rid of disorders. \n\n• You can browse discussions."),

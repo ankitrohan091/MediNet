@@ -20,6 +20,7 @@ dependencies:
   firebase_core: ^2.9.0
   easy_sidemenu: ^0.4.1
   cloud_firestore: ^4.4.5
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:

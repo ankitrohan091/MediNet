@@ -78,7 +78,7 @@ class _MenuPageState extends State<MenuPage> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               PageRouteBuilder(
-                                pageBuilder: (context, a, b) => const MyLogin(),
+                                pageBuilder: (context, a, b) => MyLogin(),
                                 transitionDuration: const Duration(seconds: 0),
                               ),
                                   (route) => false);

@@ -1,18 +1,13 @@
-import 'dart:ffi';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:medinet_app/NavBar.dart';
 import 'package:medinet_app/forgotPass.dart';
-import 'package:medinet_app/home.dart';
 import 'package:medinet_app/post.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyLogin extends StatefulWidget {
-  String name='';
-  MyLogin({Key? key}) : super(key: key);
+  const MyLogin({Key? key}) : super(key: key);
   @override
   State<MyLogin> createState() => _MYLoginState();
 }
@@ -121,7 +116,6 @@ class _MYLoginState extends State<MyLogin> {
                                       SharedPreferences pref=await SharedPreferences.getInstance();
                                       obj.gettingData(emailAddress.text);
                                       obj.getInfo(emailAddress.text);
-                                      widget.name=pref.getString('Name')!;
                                         Navigator.pushAndRemoveUntil(context,
                                             PageRouteBuilder(pageBuilder: (context, a, b) => const NavBar(),
                                               transitionDuration: const Duration(seconds: 0),),

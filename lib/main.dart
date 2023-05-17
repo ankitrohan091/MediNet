@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:medinet_app/Ask.dart';
 import 'package:medinet_app/aboutUs.dart';
+import 'package:medinet_app/filter.dart';
 import 'package:medinet_app/forgotPass.dart';
 import 'package:medinet_app/home.dart';
 import 'package:medinet_app/login.dart';
@@ -35,6 +36,7 @@ void main() async {
       'Navbar' :(BuildContext context) => const NavBar(),
       'like' :(BuildContext context) => const Liked(),
       'Ask' :(BuildContext context) => const AskPage(),
+      'filter' :(BuildContext context) => const Filter(),
     },
   ));
 }

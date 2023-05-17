@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medinet_app/post.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class MyQuestion extends StatefulWidget {
   const MyQuestion({Key? key}) : super(key: key);
 
@@ -7,64 +9,106 @@ class MyQuestion extends StatefulWidget {
 }
 
 class _MyQuestionState extends State<MyQuestion> {
-  List<String> _questions = [];
-  TextEditingController _controller = TextEditingController();
-  void _postQuestion() {
+   List<String> questions = [];
+  final TextEditingController _controller = TextEditingController();
+  DatabaseService obj=DatabaseService();
+  void getList(){
     setState(() {
-      _questions.add(_controller.text);
-      _controller.clear();
+      obj.getSoln();
     });
   }
-
+  Future<List<String>> getProblem() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> myList = prefs.getStringList('problems') ?? [];
+    return myList;
+  }
+  void get() async{
+    questions = await getProblem();
+  }
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      getList();
+      get();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Question Box'),
+          title: const Text('Describe Problem'),
         ),
         body: Column(
           children: [
             TextField(
               controller: _controller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your question',
                 contentPadding: EdgeInsets.all(10),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
                 if (_controller.text != "") {
-                _postQuestion();
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    backgroundColor: Colors.teal,
-                    content: Text(
-                      'Our Team has get your problem that you are facing in our Application.\n You will notify soon through our '
-                          'E-mail with its solution and You will also see the answer here in this page '
-                          'after our team has reply your Questions  ⮛',
-                      style: TextStyle(color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900),),
-                    duration: Duration(seconds: 18),
-                  ),);
+                obj.giveHelp(_controller.text);
+                _controller.text="";
+                showDialog(context: context, builder: (context){
+                  return AlertDialog(backgroundColor: Colors.white70,
+                    title: const Text('Our Team has get your problem that you are facing in our Application.\nYou will notify soon through our '
+                        'E-mail with its solution and You will also see the answer here in this page '
+                        'after our team has reply your Questions',
+                      style: TextStyle(color: Colors.blueAccent,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900),),
+                    actions: [
+                      TextButton(onPressed: (){
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      }, child: const Text("OK",style: TextStyle(color: Colors.black),))
+                    ],
+                  );
+                });
                 }
                 else{
-                  null;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        backgroundColor: Colors.black26,
+                        content: Text(
+                          'Please Describe your Problem!',
+                        )),
+                  );
                 }
                 },
-              child: Text('Post'),
+              child: const Text('Post'),
             ),
-            SizedBox(height: 10),
-            Expanded(
+            const SizedBox(height: 10),
+            Flexible(
               child: ListView.builder(
-                itemCount: _questions.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(_questions[index]),
-                  );
-                },
-              ),
-            ),
+                  shrinkWrap: true,
+                  itemCount: questions.length,
+                  itemBuilder: (context,index){
+                    final item = questions[index];
+                    final textStyle = index % 2 == 0
+                        ? const TextStyle(
+                      decorationColor: Colors.green,
+                      decoration: TextDecoration.underline,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 19.5,
+                      color: Colors.red,
+                    )
+                        : const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      color: Colors.blue,
+                    );
+                    return Text(
+                      item,
+                      style: textStyle,
+                    );
+              }),
+            )
           ],
         ));
   }

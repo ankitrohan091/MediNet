@@ -197,7 +197,7 @@ class _MyRegisterState extends State<MyRegister> {
                                       );
                                       postService.savingUserData(userName.text,emailAddress.text,passcode.text);
                                       postService.gettingData(emailAddress.text);
-                                      postService.savingInfo(emailAddress.text, '', '', '', '', '','', '');
+                                      postService.savingInfo(userName.text,emailAddress.text, '', '', '', '', '','', '');
                                       postService.getInfo(emailAddress.text);
                                       // SharedPreferences prefs = await SharedPreferences.getInstance();
                                       // await prefs.setBool('isLoggedIn', true);
