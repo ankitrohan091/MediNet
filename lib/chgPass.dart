@@ -40,7 +40,7 @@ class _ChgPass extends State<ChgPass> {
         await uId.updatePassword(newPassword);
         FirebaseAuth.instance.signOut();
         Navigator.pushAndRemoveUntil(context, PageRouteBuilder(
-          pageBuilder: (context, a, b) => MyLogin(),
+          pageBuilder: (context, a, b) => const MyLogin(),
           transitionDuration: const Duration(seconds: 0),), (route) => false);
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             backgroundColor: Colors.black26,

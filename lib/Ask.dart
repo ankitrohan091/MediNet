@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:medinet_app/NavBar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:medinet_app/home.dart';
+import 'package:medinet_app/yourpost.dart';
 
 class AskPage extends StatefulWidget {
   const AskPage({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _AskPageState extends State<AskPage> {
               children: [
                 IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, 'menu');
+                      // Navigator.pushNamed(context, 'menu');
                     },
                     icon: const Icon(
                       Icons.menu_sharp,
@@ -45,7 +46,7 @@ class _AskPageState extends State<AskPage> {
                     child: TextButton(
                       child: const Text(""),
                       onPressed: () {
-                        Navigator.pushNamed(context, 'userInfo');
+                        // Navigator.pushNamed(context, 'userInfo');
                       },
                     )),
               ],
@@ -67,15 +68,13 @@ class _AskPageState extends State<AskPage> {
             const SizedBox(height: 10),
             Row(
               children: const [
-                SizedBox(
-                  child: Text(
-                    "🥴 Tips on getting Good answers quickly: -",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                    ),
+                Text(
+                  "🥴 Tips on getting Good answers quickly: -",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
                   ),
                 )
               ],
@@ -136,54 +135,53 @@ class _AskPageState extends State<AskPage> {
                     RegExp('[A-Za-z0-9?.,:"!#%&*()-+|/; \n]'))
               ],
             ),
-            SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                      onPressed: () async{
-                        if (question.text != "" && question.text != " ") {
-                          ques = question.text;
-                          question.text = "";
-                          SharedPreferences prefs =await SharedPreferences.getInstance();
-                          prefs.setString('question', ques);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(backgroundColor: Colors.black26, content: Text(
-                                  'Your Question has been added to the Community!\n '
-                                      'You will able to check the answers in Your Post Section, if someone give the answer',
-                                ),
-                              duration: Duration(seconds: 6),
-                          ));
-                          Navigator.pushNamed(context,'AllPost');
-                        }else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(backgroundColor: Colors.black26, content: Text(
-                                  'Please Write your Qustion! Your question cannot be null.',
-                                )),
-                          );
-                        }
-                      },
-                      child: const Text("Add")),
-                  const SizedBox(width: 2),
-                  ElevatedButton(
-                      onPressed: () {
-                        if(question.text==""){
-                          Navigator.pushAndRemoveUntil(context, PageRouteBuilder(
-                            pageBuilder: (context, a, b) => const NavBar(),
-                            transitionDuration: const Duration(seconds: 0),),
-                                  (route) => false);
-                        }
-                        setState(() {
-                          question.text = "";
-                        });
+            Row(
+              children: [
+                SizedBox(width: size.width * 0.60),
+                ElevatedButton(
+                    onPressed: () {
+                      if (question.text != "" && question.text != " ") {
                         ques = question.text;
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                      ),
-                      child: const Text("Cancel"))
-                ],
-              ),
+                        question.text = "";
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(backgroundColor: Colors.black26, content: Text(
+                                'Your Question has been added to the Community!\n '
+                                    'You will able to check the answers in Your Post Section, if someone give the answer',
+                              ),
+                            duration: Duration(seconds: 6),
+                        ));
+                        Navigator.pushAndRemoveUntil(context, PageRouteBuilder(
+                          pageBuilder: (context, a, b) => const PostList(),
+                          transitionDuration: const Duration(seconds: 0),),
+                                (route) => false);
+                      }else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(backgroundColor: Colors.black26, content: Text(
+                                'Please Write your Qustion! Your question cannot be null.',
+                              )),
+                        );
+                      }
+                    },
+                    child: const Text("Add")),
+                const SizedBox(width: 2),
+                ElevatedButton(
+                    onPressed: () {
+                      if(question.text==""){
+                        Navigator.pushAndRemoveUntil(context, PageRouteBuilder(
+                          pageBuilder: (context, a, b) => const NavBar(),
+                          transitionDuration: const Duration(seconds: 0),),
+                                (route) => false);
+                      }
+                      setState(() {
+                        question.text = "";
+                      });
+                      ques = question.text;
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                    ),
+                    child: const Text("Cancel"))
+              ],
             ),
           ]),
         ),

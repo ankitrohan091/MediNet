@@ -176,8 +176,8 @@ class MyCustomFormState extends State<MyCustomForm> {
               ),
               TextFormField(
                 controller: pinController,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.add),
+                decoration: InputDecoration(
+                  icon: const Icon(Icons.add),
                   hintText: 'Pincode',
                   labelText: 'PIN',
                 ),

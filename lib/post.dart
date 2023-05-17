@@ -9,8 +9,6 @@ class DatabaseService {
   FirebaseFirestore.instance.collection("user");
   final CollectionReference infoCollection =
   FirebaseFirestore.instance.collection("details");
-  final CollectionReference quesCollection =
-  FirebaseFirestore.instance.collection('question');
 
   // saving the userdata
   Future savingUserData(String name, email, password) async {
@@ -86,12 +84,5 @@ class DatabaseService {
       'City' : city,
       'PinCode' : pinCode,
     });
-  }
-  void getSpecificFieldFromAllDocuments(List <String> ques) async {
-    QuerySnapshot snapshot = await quesCollection.get();
-    for (var docSnapshot in snapshot.docs) {
-      String value = docSnapshot.get('heading');
-      ques.add(value);
-    }
   }
 }
