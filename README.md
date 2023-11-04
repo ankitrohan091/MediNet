@@ -32,7 +32,7 @@ To continue learning and improving this app, you can try adding more features, s
 
 - Adding comment functionality to posts- Implementing a search functionality for posts- Adding notifications for new posts and comments- Integrating a chat feature for users to communicate directly- Adding a feature to share posts on social media
 
-There are many resources available to help you learn more about Flutter. Here are a few:
+There are many resources available to help you learn more about Flutter. Here are a few :
 
 - [Flutter](https://flutter.dev/docs)
 - [Flutter YouTube channel](https://www.youtube.com/flutterdev)
